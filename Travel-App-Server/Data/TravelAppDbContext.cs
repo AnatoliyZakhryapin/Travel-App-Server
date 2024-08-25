@@ -11,6 +11,37 @@ namespace Travel_App_Server.Data
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=Travel-App;Integrated Security=True;Pooling=False;Encrypt=False;TrustServerCertificate=False");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Configura precisione e scala per i valori decimal
+            modelBuilder.Entity<Destination>()
+                .Property(d => d.Latitude)
+                .HasColumnType("decimal(9,6)");
+
+            modelBuilder.Entity<Destination>()
+                .Property(d => d.Longitude)
+                .HasColumnType("decimal(9,6)");
+
+            modelBuilder.Entity<Place>()
+                .Property(p => p.Latitude)
+                .HasColumnType("decimal(9,6)");
+
+            modelBuilder.Entity<Place>()
+                .Property(p => p.Longitude)
+                .HasColumnType("decimal(9,6)");
+
+            modelBuilder.Entity<Expense>()
+                .Property(e => e.Cost)
+                .HasColumnType("decimal(18,2)");
+        }
+
         public DbSet<Trip> Trips { get; set; }
         public DbSet<Day> Days { get; set; }
         public DbSet<Step> Steps { get; set; }

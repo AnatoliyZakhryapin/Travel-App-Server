@@ -16,7 +16,7 @@ namespace Travel_App_Server
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddDbContext<TravelAppDbContext>();
+            builder.Services.AddDbContext<TravelAppDbContext>(); 
 
             builder.Services.AddIdentity<User, IdentityRole>()
               .AddEntityFrameworkStores<TravelAppDbContext>()

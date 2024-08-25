@@ -7,8 +7,8 @@
         public int Rating { get; set; }
 
         // Relazioni
-        public long StepID { get; set; }
-        public Step Step { get; set; }
+        public long? StepID { get; set; }
+        public Step? Step { get; set; }
 
         public string UserId { get; set; }
         public User User { get; set; }
